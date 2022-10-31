@@ -1,8 +1,8 @@
 from typing import List
 
+from hell_analysis.mass_matching.mass_matcher import is_mass_in_specta
 from hell_analysis.peptide.fragment import Fragment
 from hell_analysis.peptide.peptide import Peptide, create_peptide
-from mass_matcher import is_mass_in_specta
 from hell_analysis.peptide.peptide_modification_factory import make_all_modification_combinations
 
 def get_all_fragments(list_peptides: List[Peptide], only_modified=True) -> List[Fragment]:
@@ -38,7 +38,7 @@ if __name__ == '__main__':
     from example.example_masses import example_masses
 
     peptide = create_peptide('FVNQHLCGSHLVEALYLVCGERGFFYTPKT')
-    all_peptides = make_all_modification_combinations(peptide, 182.1671, 3)
+    all_peptides = make_all_modification_combinations(peptide, 182.1671, 1)
     modified_fragments = get_all_fragments(all_peptides, only_modified=True)
 
     matched_fragments = get_matching_fragments(modified_fragments, example_masses)

@@ -1,7 +1,7 @@
 from typing import List
 
+from hell_analysis.mass_matching.mass_matcher import is_mass_in_specta
 from hell_analysis.peptide.peptide import Peptide, create_peptide
-from mass_matcher import is_mass_in_specta
 from hell_analysis.peptide.peptide_modification_factory import make_all_modification_combinations
 
 
@@ -33,7 +33,7 @@ if __name__ == '__main__':
     from example.example_masses import example_masses
 
     peptide = create_peptide('FVNQHLCGSHLVEALYLVCGERGFFYTPKT')
-    all_peptides = make_all_modification_combinations(peptide, 182.1671, 1)
+    all_peptides = make_all_modification_combinations(peptide, 182.1671, 2)
 
     peptide_matches = get_peptide_mass_matches(all_peptides, example_masses)
 
