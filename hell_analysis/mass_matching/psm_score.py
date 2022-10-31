@@ -20,7 +20,7 @@ def score_psm(peptide: Peptide, ms_masses: List[float]):
     score = round((len(matches) / (len(matches) + len(no_matches)) ) * 100,1)
     return score
 
-def get_peptide_mass_matches(list_peptides: List[Peptide], ms_masses: list[float]):
+def get_peptide_mass_matches(list_peptides: List[Peptide], ms_masses: List[float]):
     peptide_matches = []
     for peptide in list_peptides:
         num_matches = score_psm(peptide, ms_masses)
