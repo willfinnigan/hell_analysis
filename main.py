@@ -11,7 +11,7 @@ path_to_excel = "lauric acid - peak 1.xlsx"
 peptide = create_peptide(peptide_str)
 all_peptides = make_all_modification_combinations(peptide, modification_mass, max_modifications)
 masses = load_masses(path_to_excel)
-peptide_matches = get_peptide_mass_matches(all_peptides, masses)
+peptide_matches = get_peptide_mass_matches(all_peptides, masses, ppm=20)
 
 for (peptide, num_matches) in peptide_matches:
     print(f"{peptide} - {num_matches}")

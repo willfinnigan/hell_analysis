@@ -5,29 +5,28 @@ from hell_analysis.peptide.peptide import Peptide, create_peptide
 from hell_analysis.peptide.peptide_modification_factory import make_all_modification_combinations
 
 
-def match_spectra(peptide: Peptide, ms_masses: List[float]):
+def match_spectra(peptide: Peptide, ms_masses: List[float], ppm=20):
     matches = []
     no_matches = []
     for mass in peptide.theoretical_ms2_spectra():
-        if is_mass_in_specta(mass, ms_masses, error=0.002):
+        if is_mass_in_specta(mass, ms_masses, ppm=ppm):
             matches.append(mass)
         else:
             no_matches.append(mass)
     return matches, no_matches
 
-def score_psm(peptide: Peptide, ms_masses: List[float]):
-    matches, no_matches = match_spectra(peptide, ms_masses)
+def score_psm(peptide: Peptide, ms_masses: List[float], ppm=20):
+    matches, no_matches = match_spectra(peptide, ms_masses, ppm=ppm)
     score = round((len(matches) / (len(matches) + len(no_matches)) ) * 100,1)
     return score
 
-def get_peptide_mass_matches(list_peptides: List[Peptide], ms_masses: List[float]):
+def get_peptide_mass_matches(list_peptides: List[Peptide], ms_masses: List[float], ppm=20):
     peptide_matches = []
     for peptide in list_peptides:
-        num_matches = score_psm(peptide, ms_masses)
+        num_matches = score_psm(peptide, ms_masses, ppm=ppm)
         peptide_matches.append((peptide, num_matches))
 
     return sorted(peptide_matches, key=lambda t: t[1], reverse=True)
-
 
 if __name__ == '__main__':
     from example.example_masses import example_masses

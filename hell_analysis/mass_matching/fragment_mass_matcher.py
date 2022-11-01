@@ -21,15 +21,15 @@ def get_all_fragments(list_peptides: List[Peptide], only_modified=True) -> List[
             modified_fragments.append(fragment)
     return modified_fragments
 
-def get_matching_fragments(list_fragments: List[Fragment], ms_masses: List[float], error=0.002) -> List[Fragment]:
+def get_matching_fragments(list_fragments: List[Fragment], ms_masses: List[float], ppm=20) -> List[Fragment]:
     matches = []
     for fragment in list_fragments:
         mass = fragment.get_mass()
         mass_2plus = fragment.get_2plus_mass()
 
-        if is_mass_in_specta(mass, ms_masses, error=0.002):
+        if is_mass_in_specta(mass, ms_masses, ppm=ppm):
             matches.append(fragment)
-        elif is_mass_in_specta( mass_2plus, ms_masses, error=0.002):
+        elif is_mass_in_specta( mass_2plus, ms_masses, ppm=ppm):
             matches.append(fragment)
     return matches
 
