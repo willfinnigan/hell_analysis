@@ -6,7 +6,7 @@ def do_masses_match(mass: float, ms_mass: float, ppm=20) -> bool:
     error = (ms_mass * error_pc)
     lower = ms_mass - error
     upper = ms_mass + error
-    print(f"Range = {lower} to {upper} with an error of {error}")
+    #print(f"Range = {lower} to {upper} with an error of {error}")
     if mass > lower and mass < upper:
         return True
     return False
